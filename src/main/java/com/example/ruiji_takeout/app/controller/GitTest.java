@@ -12,5 +12,6 @@ public class GitTest {
     @Test
     public void test(){
         System.out.println("v2");
+        System.out.println("热修分支");
     }
 }
