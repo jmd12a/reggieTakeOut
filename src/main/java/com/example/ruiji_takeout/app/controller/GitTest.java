@@ -13,5 +13,7 @@ public class GitTest {
     public void test(){
         System.out.println("v2");
         System.out.println("热修分支");
+
+        System.out.println("hot-fix分支");
     }
 }
