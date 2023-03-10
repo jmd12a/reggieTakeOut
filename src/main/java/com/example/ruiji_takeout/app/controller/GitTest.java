@@ -13,7 +13,13 @@ public class GitTest {
     public void test(){
         System.out.println("v2");
         System.out.println("主分支");
+        System.out.println("热修分支");
+        System.out.println("hot-fix分支");
 
-        System.out.println("主分支=冲突");
+        System.out.println("主分支冲突");
+        System.out.println("hot-fix分支冲突");
+        System.out.println("merge");
+
+
     }
 }
