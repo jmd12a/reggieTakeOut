@@ -15,5 +15,6 @@ public class GitTest {
         System.out.println("热修分支");
 
         System.out.println("hot-fix分支");
+        System.out.println("hot-fix分支冲突");
     }
 }
