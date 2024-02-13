@@ -64,12 +64,12 @@ public class CommonController {
         byte[] buff = new byte[256]; // 一次读整个文件的信息太多，建立一个256大小的byte数组来多次读入
 
         int len = 0;
-        while (true){
-            len = fileInputStream.read(buff);
-            if (len != -1) {
+        while ((len = fileInputStream.read(buff)) != -1){
+
+
                 outputStream.write(buff,0,len);
                 outputStream.flush(); // 刷新输出流，防止没有全部输出
-            }else break;
+
         }
 
         fileInputStream.close(); // 读取完毕，关闭输入流

@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  * @Description：
  */
 @Slf4j
-@Component
+// @Component
 public class UserLoginInterceptor implements HandlerInterceptor {
 
     @Override

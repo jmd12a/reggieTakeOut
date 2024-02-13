@@ -21,7 +21,7 @@ import javax.servlet.http.HttpSession;
  * @Description：
  */
 @Slf4j
-@Component
+// @Component
 public class LoginInterceptor implements HandlerInterceptor {
 
     @Override

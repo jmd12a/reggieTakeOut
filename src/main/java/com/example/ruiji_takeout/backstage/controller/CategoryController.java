@@ -11,11 +11,13 @@ import com.example.ruiji_takeout.backstage.service.CategoryService;
 import com.example.ruiji_takeout.backstage.service.DishService;
 import com.example.ruiji_takeout.backstage.service.SetmealService;
 import com.example.ruiji_takeout.common.R;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import sun.awt.geom.AreaOp;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -35,6 +37,9 @@ public class CategoryController {
 
     @Resource
     private SetmealService setmealService;
+
+    @Resource
+    private RedisTemplate redisTemplate;
 
     @RequestMapping("/page")
     public @ResponseBody R<Page<Category>> page(@RequestParam("page") Integer pageNum, Integer pageSize){
@@ -114,9 +119,47 @@ public class CategoryController {
 
     @GetMapping("/list")
     public @ResponseBody R getCategoryListByType(Integer type){
-        List<Category> categoryList = categoryService.getCategoryListByType(type);
 
-        return R.success(categoryList);
+
+        String key = "Category::Type"+type;
+
+        List<Category> categories = (List<Category>) redisTemplate.opsForValue().get(key);
+
+        if (categories == null){
+            // categories = categoryService.getCategoryListByType(type);
+            categories = getCategories(type);
+
+
+            redisTemplate.opsForValue().set(key,categories);
+        }
+
+        return R.success(categories);
+    }
+
+    private List<Category> getCategories(Integer type) {
+        ArrayList<Category> categories = new ArrayList<>();
+        if (type == 1){
+            Category category = new Category();
+            category.setId(123l);
+            category.setName("酸菜鱼");
+
+            Category category1 = new Category();
+            category1.setName("芒果汁");
+            category1.setId(456l);
+            categories.add(category);
+            categories.add(category1);
+        }else if (type == 2){
+            Category category = new Category();
+            category.setId(101l);
+            category.setName("卷凉皮");
+            Category category1 = new Category();
+            category1.setName("粉蒸肉");
+            category.setId(102l);
+            categories.add(category);
+            categories.add(category1);
+        }
+
+        return categories;
     }
 
 

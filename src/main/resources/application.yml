@@ -1,14 +1,17 @@
 server:
   port: 8001
+  servlet:
+    context-path: /ruiji
 spring:
   application:
     name: rui_ji_takeout
+
   datasource:
     druid:
       driver-class-name: com.mysql.cj.jdbc.Driver
       url: jdbc:mysql://localhost:3306/ruiji?serverTimezone=UTC&characterEncoding=UTF8
       username: root
-      password: 122964
+      password: 123456
   mail:
     host: smtp.qq.com
     username: 928814697@qq.com
@@ -20,6 +23,10 @@ spring:
             enable: true
     default-encoding: utf-8
     protocol: smtp
+  redis:
+    host: localhost
+    port: 6379
+
 
 
 
